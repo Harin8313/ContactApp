@@ -5,7 +5,7 @@ namespace ContactFormApi.Data.DataContext
 {
     public class ContactInformationDataContext : DbContext
     {
-        public ContactInformationDataContext() : base("ContactInfoDb")
+        public ContactInformationDataContext() : base("ContactInfoDB")
         {
             Database.SetInitializer(
                     new DropCreateDatabaseAlways<ContactInformationDataContext>());
