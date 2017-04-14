@@ -13,7 +13,7 @@ namespace ContactFormApi.Data.Repository
 
         public Repository(ContactInformationDataContext context)
         {
-            this.context = context;
+            this.context = context;                 
         }
         
         public IEnumerable<ContactInformation> GetContactInformation()
@@ -36,7 +36,20 @@ namespace ContactFormApi.Data.Repository
 
         public bool EditContactInformation(ContactInformation contact)
         {
+            //var updatecontact = context.Contacts.FirstOrDefault(m => m.Id == contact.Id);
+
+            //if (updatecontact != null)
+            //{
+            //    updatecontact.FirstName = contact.FirstName;
+            //    updatecontact.LastName = contact.LastName;
+            //    updatecontact.Email = contact.Email;
+            //    updatecontact.PhoneNumber = contact.PhoneNumber;
+            //    updatecontact.Status = contact.Status;
+
+            //}
+
             context.Entry(contact).State = EntityState.Modified;
+
             int result = context.SaveChanges();
 
             return result == 1;          

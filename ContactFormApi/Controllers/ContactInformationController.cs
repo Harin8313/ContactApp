@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using ContactFormApi.Data.Models;
 using ContactFormApi.Data.Repository;
 
 namespace ContactFormApi.Controllers
 {
+    [EnableCors(origins: "http://localhost:7855", headers: "*", methods: "*")]
     public class ContactInformationController : ApiController
     {
         private readonly IRepository repository;
@@ -15,22 +17,24 @@ namespace ContactFormApi.Controllers
             this.repository = repository;
         }
 
-        public IHttpActionResult Get()
+        [HttpGet]
+        public IHttpActionResult GetContacts()
         {
             var contacts = repository.GetContactInformation();
             return Ok(contacts);
         }
+       
+        [HttpGet]
+        public IHttpActionResult GetContact(int id)
+        {
+            var contact = repository.GetContactInformation(id);
+            if (!string.IsNullOrEmpty(contact.FirstName))
+            {
+                return Ok(contact);
+            }
 
-        //public IHttpActionResult Get(int id=0)
-        //{
-        //    var contact = repository.GetContactInformation(id);
-        //    if (!string.IsNullOrEmpty(contact.FirstName))
-        //    {
-        //        return Ok(contact);
-        //    }
-
-        //    return NotFound();
-        //}
+            return NotFound();
+        }
 
         public IHttpActionResult Delete(int id)
         {

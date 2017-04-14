@@ -36,7 +36,7 @@ namespace ContactFormApi.Tests.Controllers
                 .Setup(m => m.GetContactInformation())
                 .Returns(new List<ContactInformation>());
 
-            var result = target.Get();
+            var result = target.GetContacts();
 
             Assert.IsInstanceOfType(result,
                 typeof(OkNegotiatedContentResult<IEnumerable<ContactInformation>>));

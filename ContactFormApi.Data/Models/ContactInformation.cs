@@ -4,6 +4,10 @@ namespace ContactFormApi.Data.Models
 {
     public class ContactInformation
     {
+        public ContactInformation()
+        {
+            
+        }
         //Key
         public int  Id { get; set; }     
         

@@ -8,7 +8,7 @@ namespace ContactFormApi.Data.DataContext
         public ContactInformationDataContext() : base("ContactInfoDB")
         {
             Database.SetInitializer(
-                    new DropCreateDatabaseAlways<ContactInformationDataContext>());
+                    new DropCreateDatabaseIfModelChanges<ContactInformationDataContext>());
         }
 
         public virtual DbSet<ContactInformation> Contacts { get; set; }
